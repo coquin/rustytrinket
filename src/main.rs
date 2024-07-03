@@ -14,12 +14,8 @@ fn main() -> ! {
 
     loop {
         led.toggle();
-        arduino_hal::delay_ms(100);
+        arduino_hal::delay_ms(1000);
         led.toggle();
-        arduino_hal::delay_ms(100);
-        led.toggle();
-        arduino_hal::delay_ms(100);
-        led.toggle();
-        arduino_hal::delay_ms(800);
+        arduino_hal::delay_ms(200);
     }
 }
