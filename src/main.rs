@@ -1,25 +1,21 @@
 #![no_std]
 #![no_main]
 
-use attiny_hal as hal;
-use attiny_hal::prelude::*;
 use panic_halt as _;
 
-type CoreClock = hal::clock::MHz16;
-
-#[hal::entry]
+#[arduino_hal::entry]
 fn main() -> ! {
-    let mut delay = hal::delay::Delay::<crate::CoreClock>::new();
-    let dp = hal::Peripherals::take().unwrap();
-    let pins = hal::pins!(dp);
-    
-    let mut led = pins.pb1.into_output();
+    let dp = arduino_hal::Peripherals::take().unwrap();
+    let pins = arduino_hal::pins!(dp);
+
+    // Digital pin 1 is also connected to an onboard LED marked "L"
+    let mut led = pins.d1.into_output();
     led.set_high();
 
     loop {
         led.toggle();
-        delay.delay_ms(500u16);
+        arduino_hal::delay_ms(1000);
         led.toggle();
-        delay.delay_ms(500u16);
+        arduino_hal::delay_ms(200);
     }
 }
