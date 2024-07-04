@@ -16,10 +16,14 @@ ufmt = "0.2.0"
 nb = "0.1.2"
 embedded-hal = "0.2.3"
 
-[dependencies.arduino-hal]
+[dependencies.attiny-hal]
 git = "https://github.com/rahix/avr-hal"
 rev = "3e362624547462928a219c40f9ea8e3a64f21e5f"
-features = ["trinket"]
+features = ["attiny85"]
+
+[features] 
+default = ["rt"] 
+rt = ["attiny-hal/rt"]
 
 # The latest releases of `proc-macro2` do not support the rust toolchain that
 # we use.  Thus, we must fix this dependency to an older version where our
