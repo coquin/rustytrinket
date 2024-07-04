@@ -1,5 +1,5 @@
 [build]
-target = "avr-specs/avr-attiny85.json"
+target = "../avr-specs/avr-attiny85.json"
 
 [target.'cfg(target_arch = "avr")']
 runner = "ravedude trinket"
