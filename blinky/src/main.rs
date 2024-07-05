@@ -1,12 +1,13 @@
 #![no_std]
 #![no_main]
 
+use arduino_hal as hal;
 use panic_halt as _;
 
-#[arduino_hal::entry]
+#[hal::entry]
 fn main() -> ! {
-    let dp = arduino_hal::Peripherals::take().unwrap();
-    let pins = arduino_hal::pins!(dp);
+    let dp = hal::Peripherals::take().unwrap();
+    let pins = hal::pins!(dp);
 
     // Digital pin 1 is also connected to an onboard LED marked "L"
     let mut led = pins.d1.into_output();
@@ -14,8 +15,8 @@ fn main() -> ! {
 
     loop {
         led.toggle();
-        arduino_hal::delay_ms(1000);
+        hal::delay_ms(1000);
         led.toggle();
-        arduino_hal::delay_ms(200);
+        hal::delay_ms(200);
     }
 }
